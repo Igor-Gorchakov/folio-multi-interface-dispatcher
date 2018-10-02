@@ -1,0 +1,26 @@
+#%RAML 0.8
+
+title: Password validator module
+baseUri: http://api.example.com/{version}
+version: v1
+
+documentation:
+  - title: Service 1 API
+    content: This module exposes simple API to answer on GET request.
+
+schemas:
+  - postResponse.json: !include post_response.json
+
+/service:
+  get:
+    responses:
+      200:
+        body:
+          text/plain:
+            example: "OK response from module2"
+  post:
+    responses:
+      200:
+         body:
+            application/json:
+                schema: postResponse.json

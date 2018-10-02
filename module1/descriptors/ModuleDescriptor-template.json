@@ -1,0 +1,40 @@
+{
+  "id" : "${artifactId}-${version}",
+  "name" : "Module1",
+  "provides" : [
+    {
+      "id": "test-multi",
+      "interfaceType": "multiple",
+      "version" : "1.1",
+      "handlers" : [
+        {
+          "methods": ["POST"],
+          "pathPattern": "/service"
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/service"
+        }
+      ]
+    },
+    {
+      "id": "_tenant",
+      "version": "1.0",
+      "interfaceType": "system",
+      "handlers": [
+        {
+          "methods": ["POST"],
+          "pathPattern": "/_/tenant"
+        }
+      ]
+    }
+  ],
+  "requires" : [],
+  "launchDescriptor" : {
+    "dockerImage": "${artifactId}:${version}",
+    "dockerArgs": {
+      "HostConfig": {"PortBindings": {"8081/tcp": [{"HostPort": "%p" }] } }
+    },
+    "dockerPull": false
+  }
+}
