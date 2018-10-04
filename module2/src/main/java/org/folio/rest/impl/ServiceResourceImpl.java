@@ -21,7 +21,6 @@ public class ServiceResourceImpl implements ServiceResource {
   private static final String HEADER_CONTENT_TYPE = "Content-Type";
   private static final String APPLICATION_JSON = "application/json";
   private static final String TEXT_PLAIN = "text/plain";
-  private final Logger logger = LoggerFactory.getLogger(ServiceResourceImpl.class);
 
   @Override
   public void getService(Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) throws Exception {
@@ -33,7 +32,8 @@ public class ServiceResourceImpl implements ServiceResource {
 
   @Override
   public void postService(Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) throws Exception {
-    JsonObject responseBody = new JsonObject().put("result", "ok");
+    String responseResult = "Module2 POST service has been successfully received your request";
+    JsonObject responseBody = new JsonObject().put("result", responseResult);
     asyncResultHandler.handle(
       Future.succeededFuture(Response.ok(responseBody).header(HEADER_CONTENT_TYPE, APPLICATION_JSON).build())
     );
